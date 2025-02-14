@@ -10,7 +10,7 @@ function getComputerChoice()
     let n=randnum(3);
     if(n==0)
     {
-        return "Rock";
+        return "rock";
     }
     else if(n==1)
     {
@@ -46,7 +46,7 @@ function playGame()
 {
     for(let i=0;i<5;i++)
     {
-        playRound(getHumanChoice(),getComputerChoice());
+       console.log(playRound(getHumanChoice(),getComputerChoice()));
     }
     console.log("Human Score : "+humanScore);
     console.log("System score : "+computerScore);
@@ -61,3 +61,4 @@ function playGame()
         console.log("Tie !");
     }
 }
+playGame();
