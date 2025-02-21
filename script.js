@@ -42,10 +42,12 @@ function playRound(humanchoice) {
     if(humanScore==5 || computerScore==5){
     if(humanScore>computerScore){
                winner.textContent="You Win!"
+               disableButtons();
              }
              else
              {
                  winner.textContent="System Win!"
+                 disableButtons();
              }
             
     
@@ -75,6 +77,9 @@ function handle(event)
 {
     const Human=event.target.textContent;
     playRound(Human)
+}
+function disableButtons() {
+    container.removeEventListener("click", handle);
 }
 
 const container=document.querySelector(".container");
