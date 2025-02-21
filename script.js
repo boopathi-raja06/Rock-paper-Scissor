@@ -20,20 +20,20 @@ function getComputerChoice()
         return "scissor";
     }
 }
-function getHumanChoice(){
-    let humanchoice=prompt("Enter your choice:(rock,paper or scissor)");
-    return humanchoice.toLowerCase();
-}
-function playRound(humanchoice,computerchoice) {
+// function getHumanChoice(event){
+//    //et humanchoice=prompt("Enter your choice:(rock,paper or scissor)");
+//     return event.target.textContent;
+// }
+function playRound(humanchoice) {
     let hc=humanchoice;
-    let cc=computerchoice;
+    let cc=getComputerChoice();
 
     if(hc==cc){
-        return "Tie! your choice "+hc +" System choice "+cc;
+        console.log( "Tie! your choice "+hc +" System choice "+cc);
     }
     else if(((hc=="rock") && (cc=="scissor"))||((hc=="scissor") && (cc=="paper")))
     {   humanScore++;
-        return "your choice "+hc +" System choice "+cc+" YOu got 1 point!"
+        console.log( "your choice "+hc +" System choice "+cc+" YOu got 1 point!");
     }
     else{
         computerScore++;
@@ -42,23 +42,44 @@ function playRound(humanchoice,computerchoice) {
     
 }
 // console.log(playRound(getHumanChoice(),getComputerChoice()));
-function playGame()
+// function playGame()
+// {
+//     for(let i=0;i<5;i++)
+//     {
+//        console.log(playRound(humanchoice))
+//     }
+//     console.log("Human Score : "+humanScore);
+//     console.log("System score : "+computerScore);
+//     if(humanScore>computerScore){
+//         console.log("You Win!");
+//     }
+//     else if(computerScore>humanScore)
+//     {
+//         console.log("System Win!");
+//     }
+//     else{
+//         console.log("Tie !");
+//     }
+// }
+//playGame();
+function handle(event)
 {
-    for(let i=0;i<5;i++)
-    {
-       console.log(playRound(getHumanChoice(),getComputerChoice()));
-    }
-    console.log("Human Score : "+humanScore);
-    console.log("System score : "+computerScore);
-    if(humanScore>computerScore){
-        console.log("You Win!");
-    }
-    else if(computerScore>humanScore)
-    {
-        console.log("System Win!");
-    }
-    else{
-        console.log("Tie !");
-    }
+    const Human=event.target.textContent;
+    playRound(Human)
 }
-playGame();
+
+const container=document.querySelector(".container");
+
+const btnrock=document.createElement("button");
+btnrock.textContent="rock"
+const btnpaper=document.createElement("button");
+btnpaper.textContent="paper"
+const btnscissor=document.createElement("button");
+btnscissor.textContent="scissor"
+const button=document.querySelectorAll("button")
+
+container.appendChild(btnrock);
+container.appendChild(btnpaper);
+container.appendChild(btnscissor);
+
+container.addEventListener("click",handle)
