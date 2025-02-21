@@ -29,18 +29,27 @@ function playRound(humanchoice) {
     let cc=getComputerChoice();
 
     if(hc==cc){
-        console.log( "Tie! your choice "+hc +" System choice "+cc);
+        resdiv.textContent= "Tie! your choice "+hc +" System choice "+cc 
     }
     else if(((hc=="rock") && (cc=="scissor"))||((hc=="scissor") && (cc=="paper")))
     {   humanScore++;
-        console.log( "your choice "+hc +" System choice "+cc+" YOu got 1 point!");
+        resdiv.textContent=  "your choice "+hc +" System choice "+cc+" YOu got 1 point!"
     }
     else{
         computerScore++;
-        return "your choice "+hc +" System choice "+cc+" System got 1 point"
+        resdiv.textContent=  "your choice "+hc +" System choice "+cc+" System got 1 point"
     }
+    if(humanScore==5 || computerScore==5){
+    if(humanScore>computerScore){
+               winner.textContent="You Win!"
+             }
+             else
+             {
+                 winner.textContent="System Win!"
+             }
+            
     
-}
+}}
 // console.log(playRound(getHumanChoice(),getComputerChoice()));
 // function playGame()
 // {
@@ -69,7 +78,8 @@ function handle(event)
 }
 
 const container=document.querySelector(".container");
-
+const resdiv=document.createElement("div")
+const winner=document.createElement("div")
 const btnrock=document.createElement("button");
 btnrock.textContent="rock"
 const btnpaper=document.createElement("button");
@@ -81,5 +91,6 @@ const button=document.querySelectorAll("button")
 container.appendChild(btnrock);
 container.appendChild(btnpaper);
 container.appendChild(btnscissor);
-
+container.appendChild(resdiv);
+container.appendChild(winner)
 container.addEventListener("click",handle)
